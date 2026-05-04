@@ -129,45 +129,51 @@ function carregarFormularioCadastro() {
     div.classList.add(`identificadora`)
     div.innerHTML = `
     <div id="overlay" class="overlay">
-        <form class="product-form">
+        <form class="product-form" id="formCadastro">
             <h2>Cadastrar Produto</h2>
             <button type="button" class="btn-close" id="btnFechar" onclick="fecharFormulario()">✕</button>
             <div class="form-group">
-            <label>Nome</label>
-            <input type="text" placeholder="Nome do produto">
+                <label>Nome</label>
+                <input type="text" placeholder="Nome do produto" id="nomeP">
             </div>
 
             <div class="form-group">
-            <label>Imagem (URL)</label>
-            <input type="text" placeholder="https://...">
+                <label>Imagem (URL)</label>
+                <input type="text" placeholder="https://..." id="imagemP">
             </div>
 
             <div class="form-group">
-            <label>Descrição</label>
-            <textarea rows="3" placeholder="Descrição..."></textarea>
+                <label>Descrição</label>
+                <textarea rows="3" placeholder="Descrição..." id="descricaoP"></textarea>
             </div>
 
             <div class="form-row">
-            <div class="form-group">
-                <label>Preço</label>
-                <input type="number" placeholder="0.00">
-            </div>
+                <div class="form-group">
+                    <label>Preço</label>
+                    <input type="number" placeholder="0.00" id="precoP">
+                </div>
             <div class="form-group">
                 <label>Avaliação</label>
-                <input type="number" step="0.1" min="0" max="5" placeholder="0.0">
+                <input type="number" step="0.1" min="0" max="5" placeholder="0.0" id="avaliacaoP">
             </div>
             </div>
 
             <div class="form-group">
-            <label>Localidade</label>
-            <input type="text" placeholder="Cidade - Estado">
+                <label>Localidade</label>
+                <input type="text" placeholder="Cidade - Estado" id="localidadeP">
             </div>
 
-            <button type="submit" class="btn-submit">Cadastrar</button>
+            <button type="submit" class="btn-submit" onclick="cadastrarProduto()" >Cadastrar</button>
         </form>
-        </div>
+    </div>
     `
     body.appendChild(div)
+    
+    let cadastroForm = document.querySelector(`#formCadastro`)
+    cadastroForm.addEventListener(`submit`, function (event) {
+        event.preventDefault();
+        cadastrarProduto();    
+})
 }
 function fecharFormulario() {
     let body = document.querySelector(`body`)
@@ -175,26 +181,36 @@ function fecharFormulario() {
     body.removeChild(idetificadora)
 }
 
+
+
 function cadastrarProduto() {
-    nome.classList = 
-    let nome = document.querySelector(`#IDnome`)
-    
-    produtos.push ({
-        id:produtos.length + 1, 
-        nome: nome
-        Url..
-    })
+    let nomeP = document.querySelector(`#nomeP`).value
+    let imagemP = document.querySelector(`#imagemP`).value
+    let descricaoP = document.querySelector(`#descricaoP`).value
+    let avaliacaoP = document.querySelector(`#avaliacaoP`).value
+    let localidadeP = document.querySelector(`#localidadeP`).value
+    let valorP = document.querySelector(`#precoP`).value
+
+    let novoProduto = {
+        id: produtos.length + 1,
+        nome: nomeP,
+        imagem: imagemP,
+        descricao: descricaoP,
+        avaliacao: avaliacaoP,localidade: localidadeP,
+        valor: valorP
+    }
+    produtos.push(novoProduto);
+    console.log(produtos);
 }
 
 
 
-
- {
-        id: 10,
-        nome: "Placa de Vídeo RX 6600",
-        imagem: "https://m.media-amazon.com/images/I/81QItJufypL._AC_SX679_.jpg",
-        descricao: "Excelente custo-benefício para jogos.",
-        avaliacao: 4.8,
-        localidade: "Campinas - SP",
-        valor: 1800
-    }
+// {
+//         id: 10,
+//         nome: "Placa de Vídeo RX 6600",
+//         imagem: "https://m.media-amazon.com/images/I/81QItJufypL._AC_SX679_.jpg",
+//         descricao: "Excelente custo-benefício para jogos.",
+//         avaliacao: 4.8,
+//         localidade: "Campinas - SP",
+//         valor: 1800
+//     }
