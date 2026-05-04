@@ -169,11 +169,11 @@ function carregarFormularioCadastro() {
     `
     body.appendChild(div)
     
-    let cadastroForm = document.querySelector(`#formCadastro`)
-    cadastroForm.addEventListener(`submit`, function (event) {
-        event.preventDefault();
-        cadastrarProduto();    
-})
+    //let cadastroForm = document.querySelector(`#formCadastro`)
+    //cadastroForm.addEventListener(`submit`, function (event) {
+    //    event.preventDefault();
+     //   cadastrarProduto();    
+//})
 }
 function fecharFormulario() {
     let body = document.querySelector(`body`)
@@ -200,6 +200,12 @@ function cadastrarProduto() {
         valor: valorP
     }
     produtos.push(novoProduto);
+    
+    document.querySelector('#formCadastro').reset(); // Limpa os campos
+    document.querySelector('#productsContainer').innerHTML = ''; // Limpa a lista atual
+    carregarProdutos(); // Recarrega tudo
+    alert('Produto cadastrado com sucesso!');
+
     console.log(produtos);
 }
 
